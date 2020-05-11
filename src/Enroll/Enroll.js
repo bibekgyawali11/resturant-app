@@ -2,6 +2,7 @@ import React from 'react';
 import './Enroll.css';
 import history from '../history';
 import axios from 'axios';
+import * as emailjs from 'emailjs-com'
 
 let time = new Date().toLocaleString();
 
@@ -46,10 +47,35 @@ class Enroll extends React.Component{
         axios.post('http://localhost:5000/users/add', user)
           .then(res => console.log(res.data));
     
+        alert('thank you');
+
+        let subject= 'Thank you for Signing Up!';
+        let message = 'This email is to confirm your sign up on the MWF Pattern\nThank you !'
+
+        let templateParams = {
+          from_name: 'MWF Burger Joint',
+          to_name: this.state.email,
+          subject: subject,
+          message_html: message,
+         }
+        
+         emailjs.send(
+          'gmail',
+          'template_v9hS8O7e',
+           templateParams,
+          'user_WUtgwA3B4Quls40Dh8otG'
+         )
+
         this.setState({
-          username: ''
+          firstname: "",
+          lastname: "",
+          phonenumber: "",
+          email: "",
+          birthdate: "",
+          username: "",
+          password: "",
+          password_1: ""
         })
-        alert('thank you')
     }
     render() {
         const {firstname, lastname, phonenumber, email, birthdate, username, password, password_1} = this.state;
@@ -99,13 +125,13 @@ class Enroll extends React.Component{
             />
             </label><br/>
             <label>
-            Birthdate:
-            <input
-            value= {birthdate}
-            onChange={this.handleInputChange}
-            type="date"
-            name="date"
-            />
+              Birthdate
+              <input
+              value = {birthdate}
+              onChange = {this.handleInputChange}
+              name="birthdate"
+              type="date"
+              />
             </label><br/>
             <label>
             Username:

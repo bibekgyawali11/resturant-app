@@ -52,6 +52,15 @@
     font-size: 15px;
     font-family: 'Times New Roman', Times, serif;
   }
+
+  .date-input{
+    width: 20%;
+    padding: 5px 5px;
+    margin: 5px 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+  }
   
   input[type=text]:focus {
     border: 1px solid #8842d5; 
@@ -87,4 +96,8 @@
   label{
     margin: 2px;
     text-align: right;
+  }
+
+  DatePicker{
+        
   }
