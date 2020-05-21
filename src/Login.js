@@ -10,7 +10,7 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
-      time: this.currentTime()
+      time: this.currentTime(),
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +22,7 @@ class Login extends React.Component {
   };
 
   componentDidMount() {
-    this.interval = setInterval(() => this.setState({time: this.currentTime()}), 1000)
+    this.interval = setInterval(() => this.setState({time: this.currentTime()}), 1)
   };
   
   componentWillUnmount(){
@@ -36,8 +36,16 @@ class Login extends React.Component {
   }
 
   handleSubmit(event){
-    alert('The name submitted is '+this.state.username);
+
+    if(this.state.username==="bibek123" && this.state.password==="123"){
+    alert('Authorized User');
+    }
+
+    else{
+      alert('Please provide a valid username!');
+    }
     event.preventdefault();
+
   }
 
   show_message(){
@@ -77,6 +85,9 @@ class Login extends React.Component {
       
       <button className="join_button" onClick={() => history.push('/Enroll')}>Join Now</button>
       </div>
+      <h5>Time Elapsed: {this.state.counter}</h5>
+      <h4>Username Typed is: {this.state.username}</h4>
+      <h4>Password Typed is: {this.state.password}</h4>
       <div className="footer_clock">
        Current Time: {this.state.time}
       </div>

@@ -32,6 +32,12 @@ class Enroll extends React.Component{
     }
     handleSubmit(event){
       event.preventDefault();
+
+      if (this.state.password!==this.state.password_1){
+        alert('Password Doesn\'t Match');
+        return;
+      }
+
         const user = {
           firstname: this.state.firstname,
           lastname: this.state.lastname,
@@ -76,15 +82,24 @@ class Enroll extends React.Component{
           password: "",
           password_1: ""
         })
+
+        history.push('/');
     }
     render() {
         const {firstname, lastname, phonenumber, email, birthdate, username, password, password_1} = this.state;
+
+        var invalid_class_name = false;
+
+        if (password_1!=="" && password!==password_1){
+            invalid_class_name = true;
+        }
+
+        console.log(invalid_class_name);
         return (
-          <div>
-          <button className = "back_button" onClick={() => history.push('')}> Back</button>
-          <header className = "LoginHeader">
-          <img src={require('../img/mwf_logo.png')} alt="avatar" height="200px" width="350px"/>
           <div className="App">
+          <button className = "back_button" onClick={() => history.push('')}> Back</button>
+          <img src={require('../img/mwf_logo.png')} alt="avatar" height="200px" width="350px"/>
+
           <h3>New Member Join In</h3>
           <form className="login_form" onSubmit={this.handleSubmit}>
           <label>
@@ -156,6 +171,7 @@ class Enroll extends React.Component{
             Re-Password:
             <input
               value={password_1}
+              className={invalid_class_name ? "not-match" : ""}
               onChange={this.handleInputChange}
               type="password"
               name="password_1"
@@ -164,11 +180,10 @@ class Enroll extends React.Component{
             </label><br/>
             <input type="submit" value="Submit" /><br/> 
           </form>
-          </div>
+          Time Elapsed: {this.state.counter} seconds <br/>
           <div className="footer_clock">
             {time}
           </div>
-          </header>
           </div>
         );
       }

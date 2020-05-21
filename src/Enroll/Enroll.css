@@ -8,6 +8,7 @@
   body{
     background-color: lightblue;
   }
+  
   .join_button{
     width:75px;
     height: 30px;
@@ -45,7 +46,7 @@
   }
   
    input {
-    width: 20%;
+    width: 40%;
     padding: 5px 5px;
     margin: 5px 5px;
     box-sizing: border-box;
@@ -100,4 +101,39 @@
 
   DatePicker{
         
+  }
+
+
+  @media screen and (max-width:600px){
+
+    body{
+      background-color: red;
+    }
+
+    .LoginHeader{
+      background-color: red;
+    }
+
+    .login_form{
+      margin: 5px 5%;
+      align-self: center;
+    }
+
+    input{
+      width:40%;
+    }
+  }
+
+  @media screen and (max-width:350px){
+    body, .LoginHeader{
+      background-color: lightblue;
+    }
+
+    .login_form{
+      margin: 5px 1%;
+    }
+  }
+
+  .not-match{
+    border: 2px solid red;
   }
